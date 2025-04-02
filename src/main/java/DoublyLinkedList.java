@@ -91,4 +91,55 @@ public class DoublyLinkedList {
         return toDelete.data;
     }
 
+    
+    public void deleteAll(Character element) {
+        Node current = head;
+        while (current != null) {
+            if (current.data.equals(element)) {
+                if (current == head) {
+                    head = head.next;
+                    if (head != null) {
+                        head.prev = null;
+                    } else {
+                        tail = null;
+                    }
+                } else if (current == tail) {
+                    tail = tail.prev;
+                    tail.next = null;
+                } else {
+                    current.prev.next = current.next;
+                    current.next.prev = current.prev;
+                }
+                size--;
+            }
+            current = current.next;
+        }
+    }
+
+   
+    public Character get(int index) throws IndexOutOfBoundsException {
+        return getNode(index).data;
+    }
+
+    
+    private Node getNode(int index) throws IndexOutOfBoundsException {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index " + index + " is out of bounds!");
+        }
+
+        Node current;
+        if (index < size / 2) {
+            current = head;
+            for (int i = 0; i < index; i++) {
+                current = current.next;
+            }
+        } else {
+            current = tail;
+            for (int i = size - 1; i > index; i--) {
+                current = current.prev;
+            }
+        }
+        return current;
+    }
+
 }
