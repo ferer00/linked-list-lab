@@ -39,4 +39,56 @@ public class DoublyLinkedList {
         size++;
     }
 
+    public void insert(Character element, int index) throws IndexOutOfBoundsException {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Index " + index + " is out of bounds!");
+        }
+
+        if (index == size) {
+            append(element);
+            return;
+        }
+
+        Node newNode = new Node(element);
+        if (index == 0) {
+            newNode.next = head;
+            head.prev = newNode;
+            head = newNode;
+        } else {
+            Node current = getNode(index);
+            newNode.prev = current.prev;
+            newNode.next = current;
+            current.prev.next = newNode;
+            current.prev = newNode;
+        }
+        size++;
+    }
+
+    public Character delete(int index) throws IndexOutOfBoundsException {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index " + index + " is out of bounds!");
+        }
+
+        Node toDelete;
+        if (index == 0) {
+            toDelete = head;
+            head = head.next;
+            if (head != null) {
+                head.prev = null;
+            } else {
+                tail = null;
+            }
+        } else if (index == size - 1) {
+            toDelete = tail;
+            tail = tail.prev;
+            tail.next = null;
+        } else {
+            toDelete = getNode(index);
+            toDelete.prev.next = toDelete.next;
+            toDelete.next.prev = toDelete.prev;
+        }
+        size--;
+        return toDelete.data;
+    }
+
 }
