@@ -142,4 +142,43 @@ public class DoublyLinkedList {
         return current;
     }
 
+    public DoublyLinkedList clone() {
+        DoublyLinkedList newList = new DoublyLinkedList();
+        Node current = head;
+        while (current != null) {
+            newList.append(current.data);
+            current = current.next;
+        }
+        return newList;
+    }
+
+    public void reverse() {
+        Node temp = null;
+        Node current = head;
+        
+        while (current != null) {
+            temp = current.prev;
+            current.prev = current.next;
+            current.next = temp;
+            current = current.prev;
+        }
+        
+        if (temp != null) {
+            head = temp.prev;
+        }
+    }
+
+    public int findFirst(Character element) {
+        Node current = head;
+        int index = 0;
+        while (current != null) {
+            if (current.data.equals(element)) {
+                return index;
+            }
+            current = current.next;
+            index++;
+        }
+        return -1;
+    }
+
 }
