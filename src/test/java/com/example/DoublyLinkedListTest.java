@@ -195,12 +195,13 @@ public class DoublyLinkedListTest {
         list.append('C');
         
         assertDoesNotThrow(() -> list.reverse());
+        
         assertEquals(3, list.length());
         assertEquals('C', list.get(0));
         assertEquals('B', list.get(1));
         assertEquals('A', list.get(2));
         
-        assertEquals('A', list.get(list.length()-1));
+        assertEquals('A', list.get(list.length() - 1));
         
         DoublyLinkedList singleItemList = new DoublyLinkedList();
         singleItemList.append('X');
@@ -305,6 +306,7 @@ public class DoublyLinkedListTest {
         DoublyLinkedList emptyList = new DoublyLinkedList();
         
         assertDoesNotThrow(() -> list1.extend(emptyList));
+        
         assertEquals(2, list1.length());
         assertEquals('A', list1.get(0));
         assertEquals('B', list1.get(1));
