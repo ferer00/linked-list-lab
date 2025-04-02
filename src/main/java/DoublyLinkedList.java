@@ -181,4 +181,39 @@ public class DoublyLinkedList {
         return -1;
     }
 
+
+    public int findLast(Character element) {
+        Node current = tail;
+        int index = size - 1;
+        while (current != null) {
+            if (current.data.equals(element)) {
+                return index;
+            }
+            current = current.prev;
+            index--;
+        }
+        return -1;
+    }
+
+    public void clear() {
+        head = null;
+        tail = null;
+        size = 0;
+    }
+
+    public void extend(DoublyLinkedList elements) {
+        DoublyLinkedList copy = elements.clone();
+        if (head == null) {
+            head = copy.head;
+            tail = copy.tail;
+        } else {
+            tail.next = copy.head;
+            if (copy.head != null) {
+                copy.head.prev = tail;
+            }
+            tail = copy.tail;
+        }
+        size += copy.size;
+    }
+
 }
