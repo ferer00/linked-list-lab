@@ -158,17 +158,23 @@ public class DoublyLinkedListTest {
 
     @Test
     void testReverse() {
-        DoublyLinkedList list = new DoublyLinkedList();
-        list.append('A');
-        list.append('B');
-        list.append('C');
-        
-        list.reverse();
-        assertEquals(3, list.length());
-        assertEquals('C', list.get(0));
-        assertEquals('B', list.get(1));
-        assertEquals('A', list.get(2));
-    }
+    DoublyLinkedList list = new DoublyLinkedList();
+    list.append('A');
+    list.append('B');
+    list.append('C');
+    
+    list.reverse();
+    assertEquals(3, list.length());
+    assertEquals('C', list.get(0));
+    assertEquals('B', list.get(1));
+    assertEquals('A', list.get(2));
+    
+    DoublyLinkedList singleItemList = new DoublyLinkedList();
+    singleItemList.append('X');
+    singleItemList.reverse();
+    assertEquals(1, singleItemList.length());
+    assertEquals('X', singleItemList.get(0));
+   }
 
     @Test
     void testReverseEmptyList() {
@@ -242,11 +248,26 @@ public class DoublyLinkedListTest {
     void testExtendWithEmptyList() {
         DoublyLinkedList list1 = new DoublyLinkedList();
         list1.append('A');
+        list1.append('B');
         
-        DoublyLinkedList list2 = new DoublyLinkedList();
+        DoublyLinkedList emptyList = new DoublyLinkedList();
         
-        list1.extend(list2);
-        assertEquals(1, list1.length());
+        assertEquals(2, list1.length());
+        
+        list1.extend(emptyList);
+        
+        assertEquals(2, list1.length());
         assertEquals('A', list1.get(0));
+        assertEquals('B', list1.get(1));
+        
+        DoublyLinkedList emptyTarget = new DoublyLinkedList();
+        DoublyLinkedList sourceList = new DoublyLinkedList();
+        sourceList.append('C');
+        sourceList.append('D');
+        
+        emptyTarget.extend(sourceList);
+        assertEquals(2, emptyTarget.length());
+        assertEquals('C', emptyTarget.get(0));
+        assertEquals('D', emptyTarget.get(1));
     }
 }
