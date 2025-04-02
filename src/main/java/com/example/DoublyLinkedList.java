@@ -1,4 +1,4 @@
-package main.java;
+
 public class DoublyLinkedList {
     private static class Node {
         Character data;
