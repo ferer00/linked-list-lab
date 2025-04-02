@@ -21,4 +21,22 @@ public class DoublyLinkedList {
         tail = null;
         size = 0;
     }
+
+    public int length() {
+        return size;
+    }
+
+    public void append(Character element) {
+        Node newNode = new Node(element);
+        if (head == null) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            tail.next = newNode;
+            newNode.prev = tail;
+            tail = newNode;
+        }
+        size++;
+    }
+
 }
